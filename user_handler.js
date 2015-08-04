@@ -10,3 +10,11 @@ function grabUsername(){
     CurrentUsername = data.currentUsername;
   }, "json" );
 }
+
+function usernameIsSet(){
+    if(CurrentUsername = "NOT SET"){
+      return false;
+    }
+    else
+      return true;
+}
