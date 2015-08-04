@@ -11,16 +11,25 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
+      #signIn{display:none;}
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="user_handler.js"></script>
+    
+    <script>
+      if(usernameIsSet() == false){
+        $("#theChat").fadeOut();
+        $("#signIn").fadeIn();
+      }
+      else
+        {
+          console.log('RMC AUTH Successful');
+          console.log('Chat Connecting...');
+        }
+    </script>
     <script>
       var socket = io();
       $('form').submit(function(){
@@ -32,5 +41,14 @@
         $('#messages').append($('<li>').text(msg));
       });
     </script>
+     <div id="signIn">
+     <center><h3>Why Hello there</h3>We noticed your not signed in. Please sign in or register to access the chat.</center>
+    </div>
+    <div id="theChat">
+     <ul id="messages"></ul>
+      <form action="">
+       <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    </div>
   </body>
 </html>
