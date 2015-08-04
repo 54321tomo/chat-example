@@ -27,14 +27,19 @@
       else
         {
           console.log('RMC AUTH Successful');
-          console.log('Chat Connecting...');
         }
     </script>
     <script>
       var socket = io();
       $('form').submit(function(){
+       if(usernameIsSet() == true){
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
+       }
+       else
+        {
+          alert("trying to send messages without being signed in.");
+        }
         return false;
       });
       socket.on('chat message', function(msg){
